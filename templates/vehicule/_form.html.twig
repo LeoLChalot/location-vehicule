@@ -1,0 +1,54 @@
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-third">
+        {{ form_start(form, {'attr': {'class' : 'box'} })}}
+
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.marque) }}
+                {{ form_widget(form.marque) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.reference) }}
+                {{ form_widget(form.reference) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="select is-rounded">
+                {{ form_widget(form.couleur) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_widget(form.description) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.immatriculation) }}
+                {{ form_widget(form.immatriculation) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.prix_journalier) }}
+                {{ form_widget(form.prix_journalier) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="select is-rounded">
+                {{ form_widget(form.status_disponibilite) }}
+            </div>
+        </div>
+        <div class="block">
+            <button class="button is-primary">{{ button_label|default('Ajouter') }}</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+    <div class="column"></div>
+</div>
+
+

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">
+                Bienvenue sur notre plateforme de location de véhicules
+            </h1>
+            <h2 class="subtitle">
+                Louez le véhicule de vos rêves en quelques clics
+            </h2>
+            <a class="button is-large is-info" href="{{ path('app_home_catalogue') }}">
+                Voir le catalogue
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

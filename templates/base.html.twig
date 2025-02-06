@@ -1,17 +1,89 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    {% endblock %}
+
+    {% block javascripts %}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{{ path('app_home') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 16 16"
+                        fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M3 1L1.66667 5H0V8H1V15H3V13H13V15H15V8H16V5H14.3333L13 1H3ZM4 9C3.44772 9 3 9.44772 3 10C3 10.5523 3.44772 11 4 11C4.55228 11 5 10.5523 5 10C5 9.44772 4.55228 9 4 9ZM11.5585 3H4.44152L3.10819 7H12.8918L11.5585 3ZM12 9C11.4477 9 11 9.44772 11 10C11 10.5523 11.4477 11 12 11C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9Z"
+                            fill="#fff" />
+                    </svg>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{{ path('app_home_catalogue') }}">
+                        Catalogue des véhicules
+                    </a>
+
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link disabled">
+                            Administration
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="{{ path('app_user_index') }}">
+                                Clients
+                            </a>
+                            <a class="navbar-item" href="{{ path('app_vehicule_index') }}">
+                                Véhicules
+                            </a>
+                            <a class="navbar-item" href="{{ path('app_reservation_index') }}">
+                                Réservations
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item">
+                                Paramètres
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            {% if app.user %}
+                            <a class="button is-primary" href="{{ path('app_logout') }}">
+                                Déconnexion
+                            </a>
+                            {% else %}
+                            <a class="button is-primary" href="{{ path('app_register') }}">
+                                <strong>Inscription</strong>
+                            </a>
+                            <a class="button is-light" href="{{ path('app_login') }}">
+                                Connexion
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    {% block body %}{% endblock %}
+</body>
+
 </html>
