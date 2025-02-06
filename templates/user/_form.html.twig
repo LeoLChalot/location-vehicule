@@ -1,0 +1,36 @@
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-third">
+        {{ form_start(form, {'attr': {'class' : 'box'} })}}
+
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.roles) }}
+                {{ form_widget(form.roles) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.pseudo) }}
+                {{ form_widget(form.pseudo) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="select is-rounded">
+                {{ form_widget(form.status_disponibilite) }}
+            </div>
+        </div>
+        <div class="block">
+            <button class="button is-primary">{{ button_label|default('Ajouter') }}</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+    <div class="column"></div>
+</div>

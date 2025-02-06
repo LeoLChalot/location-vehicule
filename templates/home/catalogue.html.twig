@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title%}Cataligue des véhicules{% endblock %}
+
+{% block body %}
+<div class="block">
+    <h1 class=" is-size-1 has-text-centered">Liste des Véhicules</h1>
+</div>
+<div class="fixed-grid has-6-cols p-4">
+    <div class="grid">
+        {% for vehicule in vehicules %}
+        <div class="cell">
+            <div class="card ">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image" />
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">{{ vehicule.marque }}</p>
+                            <p class="subtitle is-6">{{ vehicule.getPrixJournalier() }} € / jour</p>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <p>{{ vehicule.description }}</p>
+                        <time datetime="2016-1-1">{{ vehicule.getCreatedAt() | date('Y-m-d') }}</time>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

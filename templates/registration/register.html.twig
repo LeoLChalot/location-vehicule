@@ -1,0 +1,27 @@
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-third">
+        {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm, {'attr': {'class' : 'box'} })}}
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.plainPassword) }}
+                {{ form_widget(form.plainPassword) }}
+            </div>
+        </div>
+
+        <div class="block">
+            <button class="button is-primary mx-auto">{{ button_label|default('Inscription') }}</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+    <div class="column"></div>
+</div>
+{% endblock %}

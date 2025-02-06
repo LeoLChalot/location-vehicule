@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block body %}
+<div class="block">
+    <h1 class=" is-size-1 has-text-centered">Liste des réservations</h1>
+</div>
+
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-half">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Client</th>
+                    <th>Véhicule</th>
+                    <th>Réservation le</th>
+                    <th>Du</th>
+                    <th>Au</th>
+                    <th>Prix Journalier</th>
+                    <th>Prix Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.getClient().getEmail() }}</td>
+                    <td>{{ reservation.getVehicule().getMarque() }}</td>
+                    <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ reservation.dateDebut ? reservation.dateDebut|date('Y-m-d') : '' }}</td>
+                    <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d') : '' }}</td>
+                    <td>{{ reservation.getVehicule().getPrixJournalier() }} €</td>
+                    <td>{{ reservation.prixTotal }} €</td>
+                    <td>
+                        <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">Voir</a>
+                        <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Editer</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">Aucun enregistrement en base de données</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_reservation_new') }}">Ajout</a>
+    </div>
+    <div class="column"></div>
+</div>
+{% endblock %}

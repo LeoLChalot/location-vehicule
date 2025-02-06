@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicule{% endblock %}
+
+{% block body %}
+<div class="block">
+    <h1 class="is-size-1 has-text-centered">Vehicule</h1>
+</div>
+
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-half">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ vehicule.id }}</td>
+                </tr>
+                <tr>
+                    <th>Marque</th>
+                    <td>{{ vehicule.marque }}</td>
+                </tr>
+                <tr>
+                    <th>Immatriculation</th>
+                    <td>{{ vehicule.immatriculation }}</td>
+                </tr>
+                <tr>
+                    <th>Prix_journalier</th>
+                    <td>{{ vehicule.prixJournalier }} € / jour</td>
+                </tr>
+                <tr>
+                    <th>Status_disponibilite</th>
+                    <td>{{ vehicule.statusDisponibilite ? 'Disponible' : 'Indisponible' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="actions">
+            <a href="{{ path('app_vehicule_index') }}" class="button is-text">back to list</a>
+            <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}" class="button is-text">edit</a>
+            <a href="{{ path('app_vehicule_delete', {'id': vehicule.id}) }}" class="button is-text">Delete</a>    
+        </div>
+        {# {{ include('vehicule/_delete_form.html.twig') }} #}
+    </div>
+    <div class="column"></div>
+</div>
+
+
+{% endblock %}

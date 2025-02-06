@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicule index{% endblock %}
+
+{% block body %}
+<div class="block">
+    <h1 class=" is-size-1 has-text-centered">Liste des Vehicule</h1>
+</div>
+
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-half">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Marque</th>
+                    <th>Immatriculation</th>
+                    <th>Prix_journalier</th>
+                    <th>Status_disponibilite</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicule in vehicules %}
+                <tr>
+                    <td>{{ vehicule.id }}</td>
+                    <td>{{ vehicule.marque }}</td>
+                    <td>{{ vehicule.immatriculation }}</td>
+                    <td>{{ vehicule.prixJournalier }}</td>
+                    <td>{{ vehicule.statusDisponibilite ? 'Disponible' : 'Indisponible' }}</td>
+                    <td>
+                        <a href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}">show</a>
+                        <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}">edit</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('app_vehicule_new') }}">Ajout</a>
+    </div>
+    <div class="column"></div>
+</div>
+{% endblock %}
