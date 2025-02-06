@@ -6,6 +6,7 @@ use App\Entity\User;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Text;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
@@ -17,11 +18,12 @@ class UserType extends AbstractType
         $builder
             ->add(
                 'email',
-                Text::class,
+                TextType::class,
                 [
                     'label' => 'Adresse email',
                     'attr' => [
-                        'placeholder' => 'Adresse email'
+                        'placeholder' => 'Adresse email',
+                        'class' => 'input'
                     ]
                 ]
             )
@@ -30,31 +32,33 @@ class UserType extends AbstractType
                     'Utilisateur' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN'
                 ],
-                'multiple' => true,
-                'expanded' => true
+                'required' => true,
+                'label' => 'Rôle',
             ])
-            ->add('password', Text::class, [
-                'label' => 'Mot de passe',
-                'attr' => [
-                    'placeholder' => 'Mot de passe'
-                ]
-            ])
-            ->add('pseudo', Text::class, [
+            // ->add('password', TextType::class, [
+            //     'label' => 'Mot de passe',
+            //     'attr' => [
+            //         'placeholder' => 'Mot de passe',
+            //         'class' => 'input'
+            //     ]
+            // ])
+            ->add('pseudo', TextType::class, [
                 'label' => 'Pseudo',
                 'attr' => [
-                    'placeholder' => 'Pseudo'
+                    'placeholder' => 'Pseudo',
+                    'class' => 'input'
                 ]
             ])
-            ->add('avatar', VichFileType::class, [
-                'label' => 'Avatar',
-                'required' => false,
-                'allow_delete' => false,
-                'download_uri' => false,
-                'image_uri' => false,
-                'attr' => [
-                    'placeholder' => 'Avatar'
-                ]
-            ])
+            // ->add('avatar', VichFileType::class, [
+            //     'label' => 'Avatar',
+            //     'required' => false,
+            //     'allow_delete' => false,
+            //     'download_uri' => false,
+            //     'image_uri' => false,
+            //     'attr' => [
+            //         'placeholder' => 'Avatar'
+            //     ]
+            // ])
         ;
     }
 

@@ -19,7 +19,7 @@ class Commentaire
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $client = null;
+    private ?User $client = null;
 
     #[ORM\Column]
     private ?int $note = null;
@@ -41,12 +41,12 @@ class Commentaire
         return $this;
     }
 
-    public function getClient(): ?user
+    public function getClient(): ?User
     {
         return $this->client;
     }
 
-    public function setClient(?user $client): static
+    public function setClient(?User $client): static
     {
         $this->client = $client;
 

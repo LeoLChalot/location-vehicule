@@ -29,7 +29,7 @@ class Reservation
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $client = null;
+    private ?User $client = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
@@ -92,12 +92,12 @@ class Reservation
         return $this;
     }
 
-    public function getClient(): ?user
+    public function getClient(): ?User
     {
         return $this->client;
     }
 
-    public function setClient(?user $client): static
+    public function setClient(?User $client): static
     {
         $this->client = $client;
 

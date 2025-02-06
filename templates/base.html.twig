@@ -7,6 +7,9 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
     {% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     {% endblock %}
 
@@ -63,10 +66,25 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            {% if app.user %}
-                            <a class="button is-primary" href="{{ path('app_logout') }}">
-                                Déconnexion
+                            {% if is_granted("ROLE_USER") %}
+                            <a class="navbar-item has-dropdown is-hoverable p-2">
+                                {% if app.user.pseudo == "" %}
+                                <p>{{ app.user.email | split('@')[0] }}</p>
+                                {% else %}
+                                <p>{{ app.user.pseudo }}</p>
+                                {% endif %}
+                                <figure class="image is-32x32">
+                                    <img class="is-rounded" src="{{ app.user.avatar }}" alt="User Avatar">
+                                </figure>
                             </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{ path('app_user_index') }}">
+                                    Profil
+                                </a>
+                                <a href="{{ path('app_logout') }}">
+                                    Déconnexion
+                                </a>
+                            </div>
                             {% else %}
                             <a class="button is-primary" href="{{ path('app_register') }}">
                                 <strong>Inscription</strong>

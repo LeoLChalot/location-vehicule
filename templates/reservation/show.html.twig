@@ -18,15 +18,15 @@
                 </tr>
                 <tr>
                     <th>Date_debut</th>
-                    <td>{{ reservation.dateDebut ? reservation.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ reservation.dateDebut ? reservation.dateDebut|date('Y-m-d') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Date_fin</th>
-                    <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d') : '' }}</td>
                 </tr>
                 <tr>
                     <th>Prix_total</th>
-                    <td>{{ reservation.prixTotal }}</td>
+                    <td>{{ reservation.prixTotal > 400 ? (reservation.prixTotal * 0.9) : reservation.prixTotal }} €</td>
                 </tr>
             </tbody>
         </table>
