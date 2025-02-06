@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class VehiculeType extends AbstractType
 {
@@ -131,6 +132,15 @@ class VehiculeType extends AbstractType
                         'message' => 'Veuillez saisir la disponibilité du véhicule',
                     ]),
                 ],
+            ])
+            ->add('imageFile', VichFileType::class, [
+                'mapped' => false,
+                'label' => 'Image',
+                'attr' => [
+                    'placeholder' => 'Image du véhicule',
+                    'class' => 'file-input',
+                ],
+                'required' => false,
             ])
         ;
     }

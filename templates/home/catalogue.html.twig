@@ -10,15 +10,23 @@
         {% for vehicule in vehicules %}
         <div class="cell">
             <div class="card ">
+                <header class="card-header">
+                    <p class="card-header-title">{{ vehicule.marque }}</p>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </header>
                 <div class="card-image">
                     <figure class="image is-4by3">
-                        <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image" />
+                        <img src="{{ asset('images/vehicules/' ~ vehicule.getImageName) }}" alt="Placeholder image" />
                     </figure>
                 </div>
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
-                            <p class="title is-4">{{ vehicule.marque }}</p>
+                            <p class="title is-5">{{ vehicule.reference }}</p>
                             <p class="subtitle is-6">{{ vehicule.getPrixJournalier() }} € / jour</p>
                         </div>
                     </div>

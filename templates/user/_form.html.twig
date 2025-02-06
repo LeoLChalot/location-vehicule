@@ -9,11 +9,8 @@
                 {{ form_widget(form.email) }}
             </div>
         </div>
-        <div class="block">
-            <div class="field">
-                {{ form_label(form.roles) }}
-                {{ form_widget(form.roles) }}
-            </div>
+        <div class="select is-rounded">
+            {{ form_widget(form.roles) }}
         </div>
         <div class="block">
             <div class="field">
@@ -21,11 +18,7 @@
                 {{ form_widget(form.pseudo) }}
             </div>
         </div>
-        <div class="block">
-            <div class="select is-rounded">
-                {{ form_widget(form.status_disponibilite) }}
-            </div>
-        </div>
+
         <div class="block">
             <button class="button is-primary">{{ button_label|default('Ajouter') }}</button>
         </div>
