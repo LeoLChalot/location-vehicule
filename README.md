@@ -310,3 +310,4 @@ class ProductType extends AbstractType
 }
 
 ```
+

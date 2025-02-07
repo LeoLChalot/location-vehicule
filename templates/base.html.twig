@@ -67,23 +67,27 @@
                     <div class="navbar-item">
                         <div class="buttons">
                             {% if is_granted("ROLE_USER") %}
-                            <a class="navbar-item has-dropdown is-hoverable p-2">
-                                {% if app.user.pseudo == "" %}
-                                <p>{{ app.user.email | split('@')[0] }}</p>
-                                {% else %}
-                                <p>{{ app.user.pseudo }}</p>
-                                {% endif %}
-                                <figure class="image is-32x32">
-                                    <img class="is-rounded" src="{{ app.user.avatar }}" alt="User Avatar">
-                                </figure>
-                            </a>
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item" href="{{ path('app_user_index') }}">
-                                    Profil
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    {% if app.user.pseudo == "" %}
+                                    <p>{{ app.user.email | split('@')[0] }}</p>
+                                    {% else %}
+                                    <p>{{ app.user.pseudo }}</p>
+                                    {% endif %}
+                                    <figure class="image is-32x32">
+                                        <img class="is-rounded" src="{{ app.user.avatar }}" alt="User Avatar">
+                                    </figure>
                                 </a>
-                                <a href="{{ path('app_logout') }}">
-                                    Déconnexion
-                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="{{ path('app_user_account') }}">
+                                        Profil
+                                    </a>
+                                    <hr class="navbar-divider">
+                                    <a class="navbar-item" href="{{ path('app_logout') }}">
+                                        Déconnexion
+                                    </a>
+                                </div>
                             </div>
                             {% else %}
                             <a class="button is-primary" href="{{ path('app_register') }}">
