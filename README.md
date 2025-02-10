@@ -120,7 +120,7 @@ classDiagram
 
 ```
 ### Features
-- [ ] Permettre aux clients de réserver un véhicule.
+- [x] Permettre aux clients de réserver un véhicule.
 - [x] Afficher les détails de la réservation.
 - [ ] Annuler ou modifier une réservation avant le début de la période.
 ___
@@ -148,12 +148,12 @@ classDiagram
 ```
 ### Features
 - Différents rôles :
-  - [ ] **`Administrateur`** : Accès complet pour gérer les véhicules, les utilisateurs et
+  - [x] **`Administrateur`** : Accès complet pour gérer les véhicules, les utilisateurs et
 les réservations.
   - [ ] **`Client`** : Réservation de véhicules et possibilité de laisser des commentaires.
 - Fonctionnalités :
-  - [ ] Inscription et connexion des utilisateurs.
-  - [ ] Gestion des comptes utilisateurs (ajout, modification, suppression par
+  - [x] Inscription et connexion des utilisateurs.
+  - [x] Gestion des comptes utilisateurs (ajout, modification, suppression par
 l'administrateur).
 ___
 
@@ -178,8 +178,8 @@ ont loué.
   
 ## 5. Interface Utilisateur
 - [ ] Interface simple et conviviale.
-- [ ] Tableau de bord pour chaque rôle, avec les fonctionnalités spécifiques.
-- [ ] Pages publiques pour consulter les véhicules disponibles sans réservation.
+- [x] Tableau de bord pour chaque rôle, avec les fonctionnalités spécifiques.
+- [x] Pages publiques pour consulter les véhicules disponibles sans réservation.
 
 # Fonctionnalités requises (partie 2)
 - [ ] Afficher les commentaires et moyenne note dans le détail de chaque véhicule.
