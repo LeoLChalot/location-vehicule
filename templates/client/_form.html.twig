@@ -1,0 +1,49 @@
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-third">
+        {{ form_start(form, {'attr': {'class' : 'box'} })}}
+
+        {# <div class="block">
+            <div class="field">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+            </div>
+        </div> #}
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.pseudo) }}
+                {{ form_widget(form.pseudo) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom) }}
+            </div>
+        </div>
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.prenom) }}
+                {{ form_widget(form.prenom) }}
+            </div>
+        </div>
+
+        <div class="file is-normal has-name">
+            {{ form_widget(form.imageFile) }}
+            <span class="file-cta">
+                <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">Photo</span>
+            </span>
+            </label>
+        </div>
+
+        <div class="block">
+            <button class="button is-primary">{{ button_label|default('Ajouter') }}</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+    <div class="column"></div>
+</div>

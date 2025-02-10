@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\Vehicule;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,14 +24,36 @@ final class ReservationController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/reservation/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
+    #[Route('/reservation/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservation = new Reservation();
+        $vehiculeId = $request->query->get('id');
+        if ($vehiculeId) {
+            $vehicule = $entityManager->getRepository(Vehicule::class)->find($vehiculeId);
+            if ($vehicule) {
+                $reservation->setVehicule($vehicule);
+            }
+        } else {
+            $vehicule = null;
+        }
+
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // dd($form->getData('client'));
+
+            $client = $form->get('client')->getData();
+            // dd($client);
+            if (!$client) {
+                $reservation->setClient($this->getUser());
+                // dd($reservation);
+            } else {
+                $reservation->setClient($client);
+            }
+
             $dateDebut = $reservation->getDateDebut();
             $dateFin = $reservation->getDateFin();
             $interval = $dateDebut->diff($dateFin);
@@ -39,13 +62,14 @@ final class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        } else {
+            return $this->render('reservation/new.html.twig', [
+                'reservation' => $reservation,
+                'vehicule' => $vehicule ? $vehicule : null,
+                'form' => $form,
+            ]);
         }
-
-        return $this->render('reservation/new.html.twig', [
-            'reservation' => $reservation,
-            'form' => $form,
-        ]);
     }
 
     #[Route('/admin/reservation/{id}', name: 'app_reservation_show', methods: ['GET'])]
@@ -77,7 +101,7 @@ final class ReservationController extends AbstractController
     #[Route('/admin/reservation/{id}', name: 'app_reservation_delete', methods: ['POST'])]
     public function delete(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reservation->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($reservation);
             $entityManager->flush();
         }
