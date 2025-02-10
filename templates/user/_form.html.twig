@@ -9,8 +9,11 @@
                 {{ form_widget(form.email) }}
             </div>
         </div>
-        <div class="select is-rounded">
-            {{ form_widget(form.roles) }}
+        <div class="block">
+            <div class="field">
+                {{ form_label(form.roles) }}
+                {{ form_widget(form.roles) }}
+            </div>
         </div>
         <div class="block">
             <div class="field">

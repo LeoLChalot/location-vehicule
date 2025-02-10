@@ -1,32 +1,42 @@
 <div class="columns">
-    <div class="column"></div>
-    <div class="column is-third">
-        {{ form_start(form, {'attr': {'class' : 'box'} })}}
-        <div class="block">
-            <div class="field">
-                {{ form_label(form.date_debut) }}
-                {{ form_widget(form.date_debut) }}
+    <div class="column">
+        <div class="column">
+            {{ form_start(form, {'attr': {'class' : 'box'} })}}
+            <div class="block">
+                <div class="field">
+                    {{ form_label(form.date_debut) }}
+                    {{ form_widget(form.date_debut) }}
+                </div>
             </div>
-        </div>
-        <div class="block">
-            <div class="field">
-                {{ form_label(form.date_fin) }}
-                {{ form_widget(form.date_fin) }}
+            <div class="block">
+                <div class="field">
+                    {{ form_label(form.date_fin) }}
+                    {{ form_widget(form.date_fin) }}
+                </div>
             </div>
-        </div>
-        <div class="block is-flex-row">
-            <div class="select is-rounded">
-                {{ form_widget(form.vehicule) }}
+            <div class="block">
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <div class="select is-rounded is-hidden">
+                {% else %}
+                    <div class="select is-rounded">
+                {% endif %}
+                        {{ form_widget(form.vehicule)}}
+                    </div>
+             
             </div>
-            <div class="select is-rounded">
-                {{ form_widget(form.client) }}
+            <div class="block">
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <div class="select is-rounded is-hidden">
+                {% else %}
+                    <div class="select is-rounded">
+                {% endif %}
+                        {{ form_widget(form.client)}}
+                    </div>
             </div>
+            <div class="block">
+                <button class="button is-primary mx-auto">{{ button_label|default('Valider') }}</button>
+            </div>
+            {{ form_end(form) }}
         </div>
-        <div class="block">
-            <button class="button is-primary mx-auto">{{ button_label|default('Valider') }}</button>
-        </div>
-
-        {{ form_end(form) }}
+        <div class="column"></div>
     </div>
-    <div class="column"></div>
-</div>

@@ -75,12 +75,12 @@
                                     <p>{{ app.user.pseudo }}</p>
                                     {% endif %}
                                     <figure class="image is-32x32">
-                                        <img class="is-rounded" src="{{ app.user.avatar }}" alt="User Avatar">
+                                        <img class="is-rounded" src="{{ asset('images/clients/' ~ app.user.getImageName) }}" alt="User Avatar">
                                     </figure>
                                 </a>
 
                                 <div class="navbar-dropdown">
-                                    <a class="navbar-item" href="{{ path('app_user_account') }}">
+                                    <a class="navbar-item" href="{{ path('app_client_profil') }}">
                                         Profil
                                     </a>
                                     <hr class="navbar-divider">

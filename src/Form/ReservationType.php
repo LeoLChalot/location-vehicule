@@ -37,9 +37,10 @@ class ReservationType extends AbstractType
                 'required' => true,
             ])
             ->add('client', EntityType::class, [
+                'placeholder' => 'Choisir un client',
                 'class' => user::class,
                 'choice_label' => 'email',
-                'required' => true,
+                'required' => false,
             ])
         ;
     }

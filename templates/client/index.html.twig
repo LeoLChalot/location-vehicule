@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <div class="box has-text-centered">
+                {% if app.user %}
+                <h1 class="title">Profil</h1>
+                <figure class="image is-128x128 is-inline-block">
+                    <img class="is-rounded" src="{{ asset('images/clients/' ~ user.getImageName) }}" alt="User Avatar">
+                </figure>
+                <div class="block mt-6">
+                    <p><strong>Nom:</strong> {{ user.nom }}</p>
+                    <p><strong>Prénom:</strong> {{ user.prenom }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Pseudo:</strong> {{ user.pseudo }}</p>
+                </div>
+                <a href="{{ path('app_client_edit') }}" class="button is-primary">Modifier</a>
+                {% else %}
+                <p>Vous n'êtes pas connecté</p>
+                <a href="{{ path('app_login') }}" class="button is-primary">Connexion</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
